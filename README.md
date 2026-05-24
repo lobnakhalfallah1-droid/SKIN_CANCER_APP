@@ -386,3 +386,5 @@ Ce projet est réalisé dans le cadre académique (Projet de Fin d'Année). Tout
 *DermaVision est un outil d'aide au diagnostic et ne remplace en aucun cas l'avis d'un dermatologue qualifié. Les résultats fournis par l'IA doivent toujours être confirmés par un examen clinique professionnel.*
 
 </div>
+#   S K I N _ C A N C E R _ A P P  
+ 
