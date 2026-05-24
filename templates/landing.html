@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DermaVision — Plateforme IA Dermatologique</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <style>
+        :root {
+            --bg: #EFE9E1;
+            --bg-2: #E7D9CC;
+            --bg-3: #DCC4B4;
+
+            --card: rgba(255, 250, 245, 0.84);
+            --card-solid: #FFF8F2;
+
+            --text: #3B2F2A;
+            --muted: #75655D;
+
+            --accent: #B8876B;
+            --accent-2: #8F5F4A;
+            --accent-soft: rgba(184, 135, 107, 0.16);
+
+            --border: rgba(143, 95, 74, 0.22);
+            --shadow: rgba(77, 53, 43, 0.12);
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* NAVBAR */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            height: 82px;
+            background: rgba(239, 233, 225, 0.88);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.45rem;
+            font-weight: 800;
+            color: var(--text);
+            letter-spacing: -0.03em;
+            text-decoration: none;
+        }
+
+        .nav-logo i {
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            background: var(--accent-soft);
+            border: 1px solid var(--border);
+            color: var(--accent-2) !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.92rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .nav-links a::before {
+            content: "●";
+            font-size: 0.45rem;
+            color: var(--accent);
+            opacity: 0.75;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-2);
+        }
+
+        .nav-cta {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-outline {
+            padding: 9px 22px;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            color: var(--accent-2);
+            font-size: 0.88rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.22s ease;
+            background: rgba(255, 248, 242, 0.45);
+        }
+
+        .btn-outline:hover {
+            background: var(--accent-soft);
+            border-color: var(--accent);
+            transform: translateY(-1px);
+        }
+
+        .btn-solid {
+            padding: 9px 22px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            color: #FFF8F2;
+            font-size: 0.88rem;
+            font-weight: 800;
+            text-decoration: none;
+            transition: all 0.22s ease;
+            border: none;
+            box-shadow: 0 10px 28px rgba(143, 95, 74, 0.22);
+        }
+
+        .btn-solid:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 32px rgba(143, 95, 74, 0.30);
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: 115px 5% 65px;
+            background:
+                radial-gradient(circle at 12% 35%, rgba(184, 135, 107, 0.22), transparent 34%),
+                radial-gradient(circle at 82% 68%, rgba(231, 211, 195, 0.65), transparent 36%),
+                linear-gradient(135deg, var(--bg), var(--bg-2));
+        }
+
+        .grid-lines {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .line-v {
+            position: absolute;
+            width: 1px;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, rgba(143, 95, 74, 0.24), transparent);
+            animation: floatV 6s ease-in-out infinite alternate;
+        }
+
+        .line-v:nth-child(1) {
+            left: 22%;
+            animation-delay: 0s;
+        }
+
+        .line-v:nth-child(2) {
+            left: 78%;
+            background: linear-gradient(to bottom, transparent, rgba(184, 135, 107, 0.28), transparent);
+            animation-delay: 1s;
+        }
+
+        .line-h {
+            position: absolute;
+            height: 1px;
+            width: 100%;
+            background: linear-gradient(to right, transparent, rgba(143, 95, 74, 0.18), transparent);
+            animation: floatH 7s ease-in-out infinite alternate;
+        }
+
+        .line-h:nth-child(3) {
+            top: 30%;
+            animation-delay: 0.5s;
+        }
+
+        .line-h:nth-child(4) {
+            top: 70%;
+            background: linear-gradient(to right, transparent, rgba(184, 135, 107, 0.22), transparent);
+            animation-delay: 1.5s;
+        }
+
+        @keyframes floatV {
+            from { transform: translateX(-20px); }
+            to { transform: translateX(20px); }
+        }
+
+        @keyframes floatH {
+            from { transform: translateY(-15px); }
+            to { transform: translateY(15px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 760px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 8px 17px;
+            border-radius: 999px;
+            background: rgba(255, 248, 242, 0.62);
+            border: 1px solid var(--border);
+            color: var(--accent-2);
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            margin-bottom: 28px;
+            box-shadow: 0 12px 28px rgba(77, 53, 43, 0.08);
+            animation: fadeDown 0.6s ease forwards;
+        }
+
+        .hero-badge-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 14px rgba(184, 135, 107, 0.70);
+            animation: pulse 1.6s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(0.6);
+                opacity: 0.45;
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.8rem, 6vw, 4.8rem);
+            font-weight: 800;
+            line-height: 1.08;
+            letter-spacing: -0.04em;
+            margin-bottom: 24px;
+            color: var(--text);
+            animation: fadeUp 0.7s ease 0.1s both;
+        }
+
+        .hero h1 em {
+            font-style: normal;
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-sub {
+            font-size: 1.08rem;
+            color: var(--muted);
+            line-height: 1.75;
+            max-width: 620px;
+            margin-bottom: 40px;
+            font-weight: 400;
+            animation: fadeUp 0.7s ease 0.2s both;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            animation: fadeUp 0.7s ease 0.3s both;
+        }
+
+        .btn-hero-primary {
+            padding: 15px 34px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            color: #FFF8F2;
+            font-family: 'Syne', sans-serif;
+            font-size: 1rem;
+            font-weight: 800;
+            text-decoration: none;
+            transition: all 0.22s ease;
+            box-shadow: 0 16px 38px rgba(143, 95, 74, 0.26);
+        }
+
+        .btn-hero-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 22px 48px rgba(143, 95, 74, 0.34);
+        }
+
+        .btn-hero-secondary {
+            padding: 15px 34px;
+            border-radius: 18px;
+            border: 1px solid var(--border);
+            color: var(--text);
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.22s ease;
+            background: rgba(255, 248, 242, 0.70);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-hero-secondary:hover {
+            background: #FFF8F2;
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .hero-note {
+            margin-top: 20px;
+            font-size: 0.88rem;
+            color: var(--muted);
+            animation: fadeUp 0.7s ease 0.4s both;
+        }
+
+        .hero-note a {
+            color: var(--accent-2);
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        .hero-note a:hover {
+            text-decoration: underline;
+        }
+
+        /* ABOUT */
+        .about {
+            padding: 100px 5%;
+            display: grid;
+            grid-template-columns: 0.95fr 1.05fr;
+            gap: 80px;
+            align-items: center;
+            background: linear-gradient(180deg, var(--bg), var(--bg-2));
+        }
+
+        .about-label {
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 16px;
+        }
+
+        .about h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 3.5vw, 3rem);
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            margin-bottom: 24px;
+            color: var(--text);
+        }
+
+        .about h2 em {
+            font-style: normal;
+            color: var(--accent-2);
+        }
+
+        .about p {
+            color: var(--muted);
+            font-size: 1rem;
+            line-height: 1.8;
+            max-width: 560px;
+        }
+
+        .about-visual {
+            position: relative;
+        }
+
+        .about-img-placeholder {
+            width: 100%;
+            min-height: 430px;
+            border-radius: 30px;
+            background:
+                radial-gradient(circle at 30% 60%, rgba(184, 135, 107, 0.18), transparent 45%),
+                radial-gradient(circle at 75% 25%, rgba(143, 95, 74, 0.12), transparent 42%),
+                linear-gradient(135deg, #F7EFE8, #E5D2C3);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 22px 55px rgba(77, 53, 43, 0.14);
+            padding: 30px;
+        }
+
+        .about-img-placeholder::after {
+            content: "";
+            position: absolute;
+            inset: 18px;
+            border-radius: 24px;
+            border: 1px solid rgba(143, 95, 74, 0.13);
+            pointer-events: none;
+        }
+
+        .analysis-card {
+            position: relative;
+            z-index: 2;
+            width: min(86%, 440px);
+            padding: 24px;
+            border-radius: 26px;
+            background: rgba(255, 248, 242, 0.84);
+            border: 1px solid rgba(143, 95, 74, 0.18);
+            box-shadow: 0 20px 45px rgba(77, 53, 43, 0.13);
+            backdrop-filter: blur(14px);
+        }
+
+        .analysis-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 22px;
+        }
+
+        .analysis-logo {
+            width: 78px;
+            height: 56px;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #4B3F18;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .analysis-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .analysis-header h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.05rem;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+
+        .analysis-header p {
+            font-size: 0.82rem;
+            color: var(--muted);
+            line-height: 1.4;
+        }
+
+        .scan-box {
+            position: relative;
+            height: 150px;
+            border-radius: 22px;
+            background:
+                radial-gradient(circle at center, rgba(184, 135, 107, 0.18), transparent 58%),
+                linear-gradient(135deg, #FFF8F2, #EBDCCF);
+            border: 1px solid rgba(143, 95, 74, 0.16);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .scan-circle {
+            width: 78px;
+            height: 78px;
+            border-radius: 50%;
+            background: rgba(255, 248, 242, 0.86);
+            border: 1px solid rgba(143, 95, 74, 0.20);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            box-shadow: 0 12px 28px rgba(77, 53, 43, 0.10);
+        }
+
+        .scan-line {
+            position: absolute;
+            left: 14%;
+            right: 14%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-2), transparent);
+            animation: scanMove 2.4s ease-in-out infinite;
+        }
+
+        @keyframes scanMove {
+            0% {
+                top: 28%;
+                opacity: 0.3;
+            }
+
+            50% {
+                top: 68%;
+                opacity: 1;
+            }
+
+            100% {
+                top: 28%;
+                opacity: 0.3;
+            }
+        }
+
+        .result-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 4px 0 10px;
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .result-row strong {
+            color: var(--accent-2);
+            font-weight: 800;
+        }
+
+        .progress {
+            width: 100%;
+            height: 9px;
+            border-radius: 999px;
+            background: rgba(143, 95, 74, 0.12);
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            width: 72%;
+            height: 100%;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        }
+
+        .mini-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .mini-stats div {
+            padding: 14px;
+            border-radius: 16px;
+            background: rgba(255, 248, 242, 0.74);
+            border: 1px solid rgba(143, 95, 74, 0.13);
+        }
+
+        .mini-stats strong {
+            display: block;
+            font-family: 'Syne', sans-serif;
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+
+        .mini-stats span {
+            display: block;
+            color: var(--muted);
+            font-size: 0.78rem;
+            margin-top: 3px;
+        }
+
+        /* FEATURES */
+        .features {
+            padding: 100px 5%;
+            background: var(--bg-2);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 3vw, 2.8rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 12px;
+            color: var(--text);
+        }
+
+        .section-header h2 em {
+            font-style: normal;
+            color: var(--accent-2);
+        }
+
+        .section-header p {
+            color: var(--muted);
+            font-size: 1rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 32px 28px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 14px 35px rgba(77, 53, 43, 0.08);
+        }
+
+        .feature-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 25px;
+            right: 25px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-7px);
+            border-color: rgba(143, 95, 74, 0.38);
+            background: rgba(255, 248, 242, 0.96);
+            box-shadow: 0 20px 45px rgba(77, 53, 43, 0.13);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-icon {
+            font-size: 2.2rem;
+            margin-bottom: 18px;
+            display: block;
+        }
+
+        .feature-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.08rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+
+        .feature-desc {
+            font-size: 0.9rem;
+            color: var(--muted);
+            line-height: 1.65;
+        }
+
+        /* CTA */
+        .cta-section {
+            padding: 120px 5%;
+            text-align: center;
+            background:
+                radial-gradient(circle at 50% 45%, rgba(184, 135, 107, 0.22), transparent 50%),
+                linear-gradient(180deg, var(--bg-2), var(--bg));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            margin-bottom: 16px;
+            position: relative;
+            color: var(--text);
+        }
+
+        .cta-section h2 em {
+            font-style: normal;
+            color: var(--accent-2);
+        }
+
+        .cta-section p {
+            color: var(--muted);
+            font-size: 1.05rem;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .cta-actions {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 32px 5%;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--muted);
+            font-size: 0.85rem;
+            background: var(--bg-2);
+        }
+
+        footer .foot-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        footer .foot-logo i {
+            width: 32px;
+            height: 32px;
+            border-radius: 10px;
+            background: var(--accent-soft);
+            border: 1px solid var(--border);
+            color: var(--accent-2) !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .about {
+                grid-template-columns: 1fr;
+                gap: 45px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                height: auto;
+                min-height: 78px;
+                padding: 14px 5%;
+                gap: 14px;
+            }
+
+            .nav-logo img {
+                height: 50px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .nav-cta {
+                gap: 8px;
+            }
+
+            .btn-outline,
+            .btn-solid {
+                padding: 8px 14px;
+                font-size: 0.78rem;
+            }
+
+            .hero {
+                padding: 115px 6% 55px;
+            }
+
+            .about-img-placeholder {
+                min-height: 390px;
+                padding: 20px;
+            }
+
+            .analysis-card {
+                width: 100%;
+                padding: 20px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+            footer .foot-logo i {
+                height: 28px;
+                width: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <a class="nav-logo" href="/">
+            <i class="bi bi-shield-plus"></i> DermaVision
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="#about">À propos</a></li>
+            <li><a href="#features">Fonctionnalités</a></li>
+        </ul>
+
+        <div class="nav-cta">
+            <a href="/login" class="btn-outline">Se connecter →</a>
+            <a href="/signup" class="btn-solid">S'inscrire →</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="grid-lines">
+            <div class="line-v"></div>
+            <div class="line-v"></div>
+            <div class="line-h"></div>
+            <div class="line-h"></div>
+        </div>
+
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="hero-badge-dot"></span>
+                Système IA médical
+            </div>
+
+            <h1>La plateforme<br>d'<em>intelligence</em><br>dermatologique</h1>
+
+            <p class="hero-sub">
+                DermaVision est une plateforme de diagnostic dermatologique assistée par intelligence artificielle,
+                conçue pour aider les professionnels de santé à analyser les lésions cutanées rapidement et avec précision.
+            </p>
+
+            <div class="hero-actions">
+                <a href="/signup" class="btn-hero-primary">Créer un compte →</a>
+                <a href="/login" class="btn-hero-secondary">Se connecter</a>
+            </div>
+
+            <p class="hero-note">
+                Déjà inscrit ? <a href="/login">Se connecter directement.</a>
+            </p>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+        <div>
+            <p class="about-label">Qui sommes-nous ?</p>
+
+            <h2>DermaVision vous<br>accompagne dans<br><em>votre expertise</em></h2>
+
+            <p>
+                DermaVision est une plateforme en ligne destinée aux professionnels de santé et dédiée à la dermatologie.
+                Grâce à un modèle de deep learning VGG16 entraîné sur des images cliniques, le système analyse les photos
+                dermatoscopiques et classe les lésions en bénignes ou malignes en quelques secondes.
+            </p>
+        </div>
+
+        <div class="about-visual">
+            <div class="about-img-placeholder">
+                <div class="analysis-card">
+                    <div class="analysis-header">
+                        <div class="analysis-logo" style="background: var(--accent-soft); border: 1px solid var(--border);">
+                            <i class="bi bi-shield-plus" style="font-size: 1.5rem; color: var(--accent-2);"></i>
+                        </div>
+
+                        <div>
+                            <h3>Analyse dermatologique</h3>
+                            <p>Assistant IA médical</p>
+                        </div>
+                    </div>
+
+                    <div class="scan-box">
+                        <div class="scan-circle">🔬</div>
+                        <div class="scan-line"></div>
+                    </div>
+
+                    <div class="result-row">
+                        <span>Résultat</span>
+                        <strong>Analyse en cours</strong>
+                    </div>
+
+                    <div class="progress">
+                        <div class="progress-fill"></div>
+                    </div>
+
+                    <div class="mini-stats">
+                        <div>
+                            <strong>VGG16</strong>
+                            <span>Modèle IA</span>
+                        </div>
+
+                        <div>
+                            <strong>Rapide</strong>
+                            <span>Diagnostic</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features" id="features">
+        <div class="section-header">
+            <h2>Tout ce dont vous<br>avez <em>besoin</em></h2>
+            <p>Un système complet pour accompagner la pratique dermatologique quotidienne</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <span class="feature-icon">🧠</span>
+                <div class="feature-title">Diagnostic IA instantané</div>
+                <p class="feature-desc">
+                    Uploadez une image dermatoscopique et obtenez une classification bénigne ou maligne avec un score de confiance.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">👥</span>
+                <div class="feature-title">Gestion des patients</div>
+                <p class="feature-desc">
+                    Créez, consultez et suivez les dossiers des patients avec leur historique complet d'analyses.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">📊</span>
+                <div class="feature-title">Tableau de bord intelligent</div>
+                <p class="feature-desc">
+                    Visualisez les statistiques, les analyses récentes et les cas prioritaires depuis une seule interface.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">🔔</span>
+                <div class="feature-title">Alertes prioritaires</div>
+                <p class="feature-desc">
+                    Identifiez rapidement les résultats préoccupants qui nécessitent une attention particulière.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">🔐</span>
+                <div class="feature-title">Accès sécurisé</div>
+                <p class="feature-desc">
+                    Chaque professionnel accède à un espace personnel sécurisé avec une gestion simple des comptes.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">⚡</span>
+                <div class="feature-title">Modèle VGG16 optimisé</div>
+                <p class="feature-desc">
+                    Un réseau de neurones convolutif utilisé pour l'analyse et la classification des images cutanées.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <h2>Prêt à rejoindre<br><em>DermaVision</em> ?</h2>
+        <p>Créez votre compte gratuitement et commencez à analyser vos images.</p>
+
+        <div class="cta-actions">
+            <a href="/signup" class="btn-hero-primary">Créer mon compte →</a>
+            <a href="/login" class="btn-hero-secondary">Se connecter</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <span class="foot-logo">
+            <i class="bi bi-shield-plus"></i> DermaVision
+        </span>
+
+        <span>© 2026 DermaVision · Système IA médical · Tous droits réservés</span>
+    </footer>
+
+</body>
+</html>

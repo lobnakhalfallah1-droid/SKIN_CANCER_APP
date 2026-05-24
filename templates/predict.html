@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>DermaVision - Analyse Patient</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <nav class="custom-navbar">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="brand-logo-small">
+                <i class="bi bi-shield-plus text-primary me-2"></i>
+                DermaVision
+            </div>
+
+            <a class="btn btn-outline-secondary btn-sm rounded-pill px-3" href="/dashboard">
+                <i class="bi bi-arrow-left me-1"></i>
+                Retour au tableau de bord
+            </a>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for cat, msg in messages %}
+        <div class="alert alert-{{ cat }} alert-custom">
+            {{ msg }}
+        </div>
+        {% endfor %}
+        {% endwith %}
+
+        <div class="form-wrapper mx-auto">
+            <div class="form-card">
+                <div class="d-flex align-items-center mb-4 pb-3 border-bottom">
+                    <div class="icon-wrapper bg-primary-light text-primary me-3 mb-0" style="width:48px;height:48px;">
+                        <i class="bi bi-person-plus" style="font-size:20px;"></i>
+                    </div>
+
+                    <h3 class="mb-0 fw-bold">
+                        Nouvelle analyse patient
+                    </h3>
+                </div>
+
+                <form method="POST" enctype="multipart/form-data">
+                    <div class="form-group mb-3">
+                        <label class="form-label">
+                            Nom complet du patient
+                        </label>
+
+                        <input class="form-control custom-input" type="text" name="name" placeholder="Ex: Jean Dupont"
+                            required>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label class="form-label">
+                            Âge du patient
+                        </label>
+
+                        <input class="form-control custom-input" type="number" name="age" placeholder="Ex: 45" min="0"
+                            max="120" required>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label class="form-label">
+                            Email du patient
+                        </label>
+                        <input type="email" class="form-control custom-input" name="email" placeholder="exemple@email.com" required>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label class="form-label">
+                            Image de la lésion
+                        </label>
+
+                        <input class="form-control custom-file-input" type="file" name="image" required
+                            accept="image/*">
+
+                        <small class="text-muted mt-1 d-block">
+                            <i class="bi bi-info-circle me-1"></i>
+                            Veuillez télécharger une image claire et centrée.
+                        </small>
+                    </div>
+
+                    <button class="btn custom-btn-primary w-100 btn-lg" type="submit">
+                        <i class="bi bi-cpu me-2"></i>
+                        Lancer le diagnostic IA
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

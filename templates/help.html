@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>DermaVision — Aide & Support</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <style>
+        :root {
+            --bg: #EFE9E1;
+            --bg-2: #E7D9CC;
+            --card: #FFF8F2;
+            --sidebar: #E7D9CC;
+            --border: rgba(143, 95, 74, 0.22);
+            --accent: #B8876B;
+            --accent-2: #8F5F4A;
+            --accent-dim: rgba(184, 135, 107, 0.16);
+            --text: #3B2F2A;
+            --muted: #75655D;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--bg), var(--bg-2));
+            font-family: 'DM Sans', sans-serif;
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        .custom-navbar {
+            background: rgba(239, 233, 225, 0.88);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .brand-logo-small {
+            font-family: 'Playfair Display', serif;
+            font-weight: 800;
+            font-size: 1.45rem;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .brand-logo-small i {
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            background: var(--accent-dim);
+            border: 1px solid var(--border);
+            color: var(--accent-2) !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .btn-back {
+            background: white;
+            color: var(--text);
+            border: 1px solid var(--border);
+            font-weight: 600;
+            padding: 8px 16px;
+            transition: all 0.2s;
+        }
+
+        .btn-back:hover {
+            background: var(--accent-dim);
+            color: var(--accent-2);
+            border-color: var(--border);
+        }
+
+        .page-wrapper {
+            padding: 40px 20px;
+            max-width: 800px;
+        }
+
+        .page-header {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .page-header p {
+            color: var(--accent-2);
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+        }
+
+        .page-header h2 {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 2.5rem;
+            color: var(--text);
+            margin-bottom: 10px;
+        }
+
+        .faq-accordion {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(77, 53, 43, 0.05);
+            margin-bottom: 30px;
+        }
+
+        .accordion-item {
+            border: none;
+            border-bottom: 1px solid var(--border);
+            background: transparent;
+        }
+
+        .accordion-item:last-child {
+            border-bottom: none;
+        }
+
+        .accordion-button {
+            background: transparent !important;
+            color: var(--text) !important;
+            font-weight: 700;
+            font-family: 'Syne', sans-serif;
+            font-size: 1.1rem;
+            padding: 20px 25px;
+            box-shadow: none !important;
+        }
+
+        .accordion-button:not(.collapsed) {
+            color: var(--accent-2) !important;
+            background: var(--accent-dim) !important;
+        }
+
+        .accordion-body {
+            padding: 20px 25px;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .support-card {
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            border-radius: 16px;
+            padding: 30px;
+            color: white;
+            text-align: center;
+            box-shadow: 0 14px 35px rgba(143, 95, 74, 0.3);
+        }
+
+        .support-card h3 {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .support-card p {
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .btn-contact {
+            background: white;
+            color: var(--accent-2);
+            border: none;
+            border-radius: 10px;
+            padding: 10px 24px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.2s;
+        }
+
+        .btn-contact:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <nav class="custom-navbar">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="brand-logo-small">
+                <i class="bi bi-shield-plus"></i>
+                DermaVision
+            </div>
+            <a class="btn btn-back btn-sm rounded-pill px-3" href="/dashboard">
+                <i class="bi bi-arrow-left me-1"></i>
+                Retour au tableau de bord
+            </a>
+        </div>
+    </nav>
+
+    <div class="container page-wrapper">
+        <div class="page-header">
+            <p>Centre d'aide</p>
+            <h2>Comment pouvons-nous vous aider ?</h2>
+        </div>
+
+        <div class="accordion faq-accordion" id="faqAccordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                        Comment ajouter un nouveau patient pour une analyse ?
+                    </button>
+                </h2>
+                <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Depuis votre tableau de bord, cliquez sur le bouton <strong>"Nouvelle Analyse"</strong>. Remplissez le nom et l'âge du patient, puis téléchargez une image dermoscopique claire de la lésion. Notre IA traitera l'image en quelques secondes.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                        Comment interpréter les résultats de l'IA ?
+                    </button>
+                </h2>
+                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        L'intelligence artificielle fournit une probabilité entre 0% et 100%. Un résultat "Malin" avec un pourcentage élevé indique une suspicion forte de mélanome ou autre cancer cutané, nécessitant une biopsie. L'IA est un outil d'aide à la décision et ne remplace pas le diagnostic final d'un dermatologue.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                        Comment utiliser l'Assistant IA (Chatbot) ?
+                    </button>
+                </h2>
+                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Le chatbot se trouve sous forme de bulle flottante en bas à droite de votre tableau de bord. Vous pouvez lui poser des questions médicales générales ou lui demander d'analyser les résultats d'un patient spécifique enregistré dans votre base de données (ex: "Analyse les résultats de Paul").
+                    </div>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                        Mes données médicales sont-elles sécurisées ?
+                    </button>
+                </h2>
+                <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Oui, toutes les images et informations patients sont stockées de manière sécurisée et cryptée conformément aux directives de protection des données de santé (RGPD/HIPAA).
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="support-card">
+            <h3>Besoin d'assistance technique ?</h3>
+            <p>Notre équipe de support est disponible du Lundi au Vendredi pour vous aider avec tout problème lié à la plateforme.</p>
+            <a href="mailto:support@dermavision.ai" class="btn-contact"><i class="fa-solid fa-envelope me-2"></i> Contacter le support</a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SkinCancer App - Résultat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="custom-navbar">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="brand-logo-small"><i class="bi bi-shield-plus text-primary me-2"></i>SkinCancer AI</div>
+            <a class="btn btn-outline-secondary btn-sm rounded-pill px-3" href="/dashboard"><i class="bi bi-arrow-left me-1"></i>Retour au tableau de bord</a>
+        </div>
+    </nav>
+
+    <div class="container mt-5 text-center">
+        <h2 class="mb-4 fw-bold">Rapport d'Analyse</h2>
+
+        <div class="result-card mx-auto">
+            <img src="{{ img }}" class="result-img mb-4" alt="Image analysée">
+            
+            <div class="result-details">
+                <h4 class="mb-3 text-muted">Diagnostic IA</h4>
+                <div class="alert {% if result == 'Benign' %}alert-success{% else %}alert-danger{% endif %} result-alert mb-4">
+                    <i class="bi {% if result == 'Benign' %}bi-check-circle-fill{% else %}bi-exclamation-triangle-fill{% endif %} me-2"></i>
+                    <span class="result-status">{{ result }}</span>
+                </div>
+                
+                <div class="confidence-section px-3 py-3 bg-light rounded-3">
+                    <p class="text-muted mb-2 text-uppercase small fw-bold tracking-wide">Indice de confiance du modèle</p>
+                    <div class="progress custom-progress-lg mb-2">
+                        <div class="progress-bar {% if result == 'Benign' %}bg-success{% else %}bg-danger{% endif %}" role="progressbar" style="width: 0%;" data-width="{{ prob }}" aria-valuenow="{{ prob }}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <h3 class="mb-0 fw-bold">{{ prob }} %</h3>
+                </div>
+            </div>
+
+            <div class="mt-4 pt-3 border-top">
+                <a class="btn custom-btn-primary px-4 me-2" href="/dashboard"><i class="bi bi-check2 me-1"></i>Terminer</a>
+                <a class="btn custom-btn-outline px-4" href="/predict"><i class="bi bi-arrow-repeat me-1"></i>Nouvelle analyse</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Astuce pour éviter l'erreur du linter HTML avec Jinja dans l'attribut style
+        document.querySelectorAll('.progress-bar').forEach(function(bar) {
+            if (bar.hasAttribute('data-width')) {
+                bar.style.width = bar.getAttribute('data-width') + '%';
+            }
+        });
+    </script>
+</body>
+</html>

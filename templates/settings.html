@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>DermaVision — Paramètres</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <style>
+        :root {
+            --bg: #EFE9E1;
+            --bg-2: #E7D9CC;
+            --card: #FFF8F2;
+            --sidebar: #E7D9CC;
+            --border: rgba(143, 95, 74, 0.22);
+            --accent: #B8876B;
+            --accent-2: #8F5F4A;
+            --accent-dim: rgba(184, 135, 107, 0.16);
+            --text: #3B2F2A;
+            --muted: #75655D;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--bg), var(--bg-2));
+            font-family: 'DM Sans', sans-serif;
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        .custom-navbar {
+            background: rgba(239, 233, 225, 0.88);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .brand-logo-small {
+            font-family: 'Playfair Display', serif;
+            font-weight: 800;
+            font-size: 1.45rem;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .brand-logo-small i {
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            background: var(--accent-dim);
+            border: 1px solid var(--border);
+            color: var(--accent-2) !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .btn-back {
+            background: white;
+            color: var(--text);
+            border: 1px solid var(--border);
+            font-weight: 600;
+            padding: 8px 16px;
+            transition: all 0.2s;
+        }
+
+        .btn-back:hover {
+            background: var(--accent-dim);
+            color: var(--accent-2);
+            border-color: var(--border);
+        }
+
+        .page-wrapper {
+            padding: 40px 20px;
+            max-width: 800px;
+        }
+
+        .page-header {
+            margin-bottom: 30px;
+        }
+
+        .page-header p {
+            color: var(--accent-2);
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+        }
+
+        .page-header h2 {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 2.2rem;
+            color: var(--text);
+            margin-bottom: 0;
+        }
+
+        .settings-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(77, 53, 43, 0.05);
+        }
+
+        .settings-card h3 {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            margin-bottom: 20px;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .settings-card h3 i {
+            color: var(--accent-2);
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+
+        .form-control {
+            background: rgba(239, 233, 225, 0.5);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 10px 15px;
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .form-control:focus {
+            background: #fff;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(184, 135, 107, 0.15);
+        }
+
+        .btn-save {
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 24px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+
+        .btn-save:hover {
+            filter: brightness(1.1);
+            transform: translateY(-2px);
+        }
+
+        .avatar-preview {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            background: var(--accent-dim);
+            color: var(--accent-2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="custom-navbar">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="brand-logo-small">
+                <i class="bi bi-shield-plus"></i>
+                DermaVision
+            </div>
+            <a class="btn btn-back btn-sm rounded-pill px-3" href="/dashboard">
+                <i class="bi bi-arrow-left me-1"></i>
+                Retour au tableau de bord
+            </a>
+        </div>
+    </nav>
+
+    <div class="container page-wrapper">
+        <div class="page-header">
+            <p>Mon compte</p>
+            <h2>Paramètres <span>du profil</span></h2>
+        </div>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ 'success' if category == 'success' else 'danger' }} alert-dismissible fade show" role="alert" style="border-radius: 12px;">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <div class="settings-card">
+            <h3><i class="fa-solid fa-user-doctor"></i> Informations Personnelles</h3>
+            
+            <div class="d-flex align-items-center gap-4 mb-4">
+                <div class="avatar-preview">
+                    {{ session.get('user', 'A')[0] | upper }}
+                </div>
+                <div>
+                    <button class="btn btn-back btn-sm" onclick="alert('Changement de photo non supporté pour le moment.')">Changer de photo</button>
+                </div>
+            </div>
+
+            <form action="/settings" method="POST">
+                <input type="hidden" name="action" value="update_profile">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Identifiant</label>
+                        <input type="text" name="username" class="form-control" value="{{ session.get('user', '') }}" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Rôle / Spécialité</label>
+                        <input type="text" name="role" class="form-control" value="{{ session.get('role', 'Médecin') }}" required>
+                    </div>
+                    <div class="col-12 mt-4 text-end">
+                        <button type="submit" class="btn-save">Sauvegarder les modifications</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="settings-card">
+            <h3><i class="fa-solid fa-shield-halved"></i> Sécurité & Connexion</h3>
+            <form action="/settings" method="POST">
+                <input type="hidden" name="action" value="update_password">
+                <div class="row g-3">
+                    <div class="col-12">
+                        <label class="form-label">Ancien mot de passe</label>
+                        <input type="password" name="old_password" class="form-control" placeholder="••••••••" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Nouveau mot de passe</label>
+                        <input type="password" name="new_password" class="form-control" placeholder="••••••••" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Confirmer le nouveau mot de passe</label>
+                        <input type="password" name="confirm_password" class="form-control" placeholder="••••••••" required>
+                    </div>
+                    <div class="col-12 mt-4 text-end">
+                        <button type="submit" class="btn-save">Mettre à jour le mot de passe</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="settings-card">
+            <h3><i class="fa-solid fa-palette"></i> Préférences</h3>
+            <div class="form-check form-switch mb-3">
+                <input class="form-check-input" type="checkbox" id="notifEmail" checked>
+                <label class="form-check-label ms-2" for="notifEmail">Recevoir des notifications par email lors d'une analyse critique</label>
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="darkMode" onchange="alert('Le mode sombre sera bientôt disponible !')">
+                <label class="form-check-label ms-2" for="darkMode">Mode sombre automatique (selon le système)</label>
+            </div>
+        </div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

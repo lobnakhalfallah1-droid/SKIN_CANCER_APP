@@ -1,0 +1,27 @@
+# Environnements virtuels
+venv/
+env/
+ENV/
+.venv/
+
+# Fichiers de cache Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# Fichiers de configuration sensibles (Clés API, mots de passe)
+templates/.env
+.env
+
+# Uploads d'images (pour ne pas versionner les photos de test des patients)
+static/uploads/*
+!static/uploads/.gitkeep
+
+# Modèles volumineux (le fichier .h5 fait 136 Mo, GitHub bloque les fichiers > 100 Mo)
+model/vgg16_malignant_vs_benign.h5
+
+# OS temp files
+.DS_Store
+Thumbs.db
