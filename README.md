@@ -25,7 +25,7 @@
 - [Installation & Configuration](#-installation--configuration)
 - [Base de Données](#-base-de-données)
 - [Utilisation](#-utilisation)
-- [Captures d'Écran](#-captures-décran)
+- [Captures d'Écran](#-captures-décran-démonstration)
 - [Auteurs](#-auteurs)
 
 ---
@@ -364,12 +364,31 @@ L'application sera accessible à l'adresse : **http://127.0.0.1:5000**
 
 ---
 
+## 📸 Captures d'Écran (Démonstration)
+
+### 🏠 Page d'Accueil (Landing Page)
+![Page d'Accueil](static/images/screenshot_landing.png)
+
+### 📊 Tableau de Bord (Dashboard)
+![Tableau de Bord](static/images/screenshot_dashboard.png)
+
+### 👥 Liste des Patients (Gestion & Actions)
+![Liste des Patients](static/images/screenshot_patients.png)
+
+### 📜 Historique des Analyses d'un Patient (Timeline)
+![Historique des Analyses](static/images/screenshot_history.png)
+
+### 📈 Statistiques & Graphiques
+![Page de Statistiques](static/images/screenshot_stats.png)
+
+---
+
 ## 👨‍💻 Auteurs
 
 | Rôle | Nom |
 |---|---|
-| **Développeur** | LOBNA |
-| **Encadrant** | [Nom du professeur] |
+| **Développeur** | LOBNA khalfallah|
+| **professeure** | [Amira Chtioui ] |
 
 ---
 
@@ -386,5 +405,6 @@ Ce projet est réalisé dans le cadre académique (Projet de Fin d'Année). Tout
 *DermaVision est un outil d'aide au diagnostic et ne remplace en aucun cas l'avis d'un dermatologue qualifié. Les résultats fournis par l'IA doivent toujours être confirmés par un examen clinique professionnel.*
 
 </div>
-#   S K I N _ C A N C E R _ A P P  
+#   S K I N _ C A N C E R _ A P P 
+ 
  

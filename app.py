@@ -26,6 +26,15 @@ db = mysql.connector.connect(
 
 cursor = db.cursor(dictionary=True)
 
+@app.before_request
+def check_db_connection():
+    global db, cursor
+    try:
+        db.ping(reconnect=True, attempts=3, delay=1)
+        cursor = db.cursor(dictionary=True)
+    except Exception as e:
+        print("Tentative de reconnexion BDD échouée :", e)
+
 try:
     cursor.execute("ALTER TABLE patients ADD COLUMN email VARCHAR(255) NULL AFTER age")
     db.commit()
