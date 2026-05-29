@@ -1,312 +1,222 @@
-# 🩺 DermaVision — Plateforme IA de Détection du Cancer de la Peau
+# DermaVision
 
-<div align="center">
+> Plateforme web intelligente d'aide au diagnostic dermatologique basée sur l'intelligence artificielle pour la classification des lésions cutanées (bénin ou malin).
 
-![Python](https://img.shields.io/badge/Python-3.9+-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![Flask](https://img.shields.io/badge/Flask-2.x-000000?style=for-the-badge&logo=flask&logoColor=white)
-![TensorFlow](https://img.shields.io/badge/TensorFlow-Keras-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white)
-![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
-![Groq](https://img.shields.io/badge/Groq_API-LLaMA_3.1-00C853?style=for-the-badge)
-
-**DermaVision** est une application web intelligente d'aide au diagnostic dermatologique, utilisant un modèle de Deep Learning (VGG16) pour classifier les lésions cutanées en **Bénin** ou **Malin**, accompagnée d'un assistant IA conversationnel.
-
-</div>
+**Dépôt GitHub :** https://github.com/lobnakhalfallah1-droid/SKIN_CANCER_APP
 
 ---
 
-## 📋 Table des Matières
+## Aperçu de l'interface
 
-- [Présentation du Projet](#-présentation-du-projet)
-- [Fonctionnalités](#-fonctionnalités)
-- [Architecture Technique](#-architecture-technique)
-- [Technologies Utilisées](#-technologies-utilisées)
-- [Structure du Projet](#-structure-du-projet)
-- [Prérequis](#-prérequis)
-- [Installation & Configuration](#-installation--configuration)
-- [Base de Données](#-base-de-données)
-- [Utilisation](#-utilisation)
-- [Captures d'Écran](#-captures-décran-démonstration)
-- [Auteurs](#-auteurs)
+| Tableau de bord | Connexion | Résultat IA |
+|:---:|:---:|:---:|
+| ![Dashboard](docs/screenshots/screenshot_dashboard.png) | ![Login](docs/screenshots/screenshot_login.png) | ![Résultat](docs/screenshots/screenshot_result.png) |
 
 ---
 
-## 🎯 Présentation du Projet
+## Table des matières
 
-DermaVision est un **Projet de Fin d'Année (PFA)** qui vise à assister les professionnels de la santé dans le dépistage précoce du cancer de la peau. L'application combine :
-
-- Un modèle de **classification d'images** basé sur l'architecture **VGG16** (Deep Learning)
-- Un **assistant IA conversationnel** (chatbot) propulsé par l'API **Groq** (modèle LLaMA 3.1)
-- Une interface web **moderne et responsive** pour la gestion complète des patients
-
-Le modèle IA analyse les images dermoscopiques et fournit une probabilité de malignité, permettant aux médecins de prioriser les cas critiques.
-
----
-
-## ✨ Fonctionnalités
-
-### 🔐 1. Authentification & Gestion des Utilisateurs
-| Fonctionnalité | Description |
-|---|---|
-| **Inscription (Sign Up)** | Création de compte avec validation robuste (nom, prénom, email, identifiant, rôle) |
-| **Connexion (Login)** | Authentification sécurisée par identifiant et mot de passe |
-| **Gestion des sessions** | Sessions Flask pour maintenir l'état de connexion de l'utilisateur |
-| **Redirection automatique** | Si l'utilisateur n'existe pas, redirection vers la page d'inscription |
-| **Validation du mot de passe** | Au moins 8 caractères, majuscule, minuscule, chiffre et caractère spécial |
-| **Déconnexion** | Nettoyage complet de la session |
-
-### 🏠 2. Page d'Accueil (Landing Page)
-| Fonctionnalité | Description |
-|---|---|
-| **Design premium** | Interface élégante avec animations CSS, gradients et effets de glassmorphisme |
-| **Section Hero** | Présentation visuelle dynamique avec animations de scan |
-| **Section À Propos** | Explication de la technologie et de la méthodologie utilisée |
-| **Section Fonctionnalités** | Présentation des 6 fonctionnalités clés avec des cartes interactives |
-| **Appel à l'action (CTA)** | Boutons d'accès rapide vers la connexion et l'inscription |
-| **Responsive Design** | Adaptation à toutes les tailles d'écran (mobile, tablette, desktop) |
-
-### 📊 3. Tableau de Bord (Dashboard)
-| Fonctionnalité | Description |
-|---|---|
-| **Vue d'ensemble** | Affichage des KPIs : nombre de patients, analyses effectuées, cas critiques |
-| **Patients prioritaires** | Liste des 3 patients les plus critiques (Malin ou probabilité ≥ 50%), triés par score |
-| **Système de notifications** | Alertes en temps réel pour les cas nécessitant une attention urgente |
-| **Accès rapide** | Cartes d'action vers les principales fonctionnalités (analyse, patients, stats, chatbot) |
-| **Barre latérale (Sidebar)** | Navigation intuitive avec indicateurs visuels de la section active |
-| **Profil utilisateur** | Affichage du nom et du rôle de l'utilisateur connecté |
-
-### 🔬 4. Prédiction IA (Analyse Dermoscopique)
-| Fonctionnalité | Description |
-|---|---|
-| **Upload d'image** | Téléchargement d'images de lésions cutanées (formats image standard) |
-| **Classification IA** | Modèle VGG16 pré-entraîné classifiant en **Bénin** ou **Malin** |
-| **Score de confiance** | Probabilité en pourcentage de la prédiction du modèle |
-| **Prétraitement** | Redimensionnement automatique (224×224 pixels) et normalisation |
-| **Sauvegarde automatique** | Enregistrement du patient, du résultat et de l'image en base de données |
-| **Formulaire patient** | Collecte du nom, âge et email du patient |
-
-### 👥 5. Gestion des Patients
-| Fonctionnalité | Description |
-|---|---|
-| **Liste complète** | Tableau récapitulatif de tous les patients analysés |
-| **Diagnostic visuel** | Badges colorés (vert/rouge) pour identifier rapidement les cas bénins/malins |
-| **Score IA** | Barre de progression visuelle du score de confiance |
-| **Aperçu d'image** | Miniature de la lésion analysée dans le tableau |
-| **Tri chronologique** | Patients triés par date d'ajout (les plus récents en premier) |
-| **Informations de contact** | Affichage de l'email pour le suivi des patients |
-| ** Modifier un patient** | Formulaire d'édition pré-rempli pour modifier le nom, l'âge et l'email d'un patient |
-| **🗑️ Supprimer un patient** | Suppression d'un patient avec confirmation JavaScript et nettoyage de l'image uploadée |
-| **Boutons d'actions** | Chaque ligne du tableau contient des boutons Modifier, Historique et Supprimer |
-
-### 📜 6. Historique d'Analyses par Patient
-| Fonctionnalité | Description |
-|---|---|
-| **Vue timeline** | Affichage chronologique de toutes les analyses effectuées pour un même patient |
-| **Statistiques résumées** | Cartes de synthèse : nombre total d'analyses, cas bénins, cas malins, score moyen |
-| **Détails par analyse** | Pour chaque analyse : date, résultat IA, score de confiance, aperçu de l'image |
-| **Indicateurs visuels** | Points colorés (vert/rouge) sur la timeline pour distinguer les résultats |
-| **Barres de progression** | Animation des scores de confiance pour chaque analyse |
-| **Recherche par nom** | L'historique regroupe automatiquement toutes les analyses d'un même nom de patient |
-
-### 📈 7. Statistiques & Graphiques
-| Fonctionnalité | Description |
-|---|---|
-| **Statistiques globales** | Total patients, cas bénins, cas malins, confiance moyenne |
-| **Graphique Doughnut** | Visualisation interactive de la répartition Bénin/Malin (Chart.js) |
-| **Cartes de stats** | Affichage visuel avec icônes et compteurs animés |
-
-### 🤖 8. Assistant IA (Chatbot — DermaAssist)
-| Fonctionnalité | Description |
-|---|---|
-| **Chatbot intelligent** | Assistant conversationnel propulsé par l'API Groq (LLaMA 3.1 8B) |
-| **Contexte médical** | Connaissance en dermatologie et oncologie cutanée |
-| **Accès aux données patients** | Peut analyser et commenter les résultats des patients enregistrés |
-| **Recommandations** | Suggestions de suivi médical basées sur les résultats IA |
-| **Widget flottant** | Bulle de chat accessible depuis le dashboard |
-| **Interface dédiée** | Page chatbot complète avec historique de conversation |
-
-### 📧 9. Envoi d'Emails Automatiques
-| Fonctionnalité | Description |
-|---|---|
-| **Convocation automatique** | Email de convocation pour les patients à risque (résultat Malin) |
-| **SMTP Gmail** | Envoi via le serveur SMTP de Gmail avec TLS |
-| **Configuration sécurisée** | Identifiants email stockés dans un fichier `.env` |
-| **Vérification** | Contrôle de l'existence de l'email du patient avant envoi |
-
-###  10. Paramètres du Compte
-| Fonctionnalité | Description |
-|---|---|
-| **Modification du profil** | Mise à jour de l'identifiant et du rôle |
-| **Changement de mot de passe** | Vérification de l'ancien mot de passe avant la mise à jour |
-| **Validation** | Vérification de l'unicité de l'identifiant |
-
-### ❓ 11. Page d'Aide (FAQ)
-| Fonctionnalité | Description |
-|---|---|
-| **FAQ interactive** | Accordéon avec les questions fréquentes |
-| **Guide d'utilisation** | Explications pour chaque fonctionnalité de la plateforme |
-| **Support technique** | Carte de contact avec lien mailto pour l'assistance |
+- [Aperçu du projet](#aperçu-du-projet)
+- [Fonctionnalités](#fonctionnalités)
+- [Pipeline IA](#pipeline-ia)
+- [Technologies utilisées](#technologies-utilisées)
+- [Structure du projet](#structure-du-projet)
+- [Installation](#installation)
+- [Configuration de la base de données](#configuration-de-la-base-de-données)
+- [Lancement de l'application](#lancement-de-lapplication)
+- [Utilisation](#utilisation)
+- [Captures d'écran](#captures-décran)
+- [Points forts](#points-forts)
+- [Améliorations futures](#améliorations-futures)
+- [Avertissement médical](#avertissement-médical)
+- [Auteurs](#auteurs)
+- [Licence](#licence)
 
 ---
 
-## 🏗 Architecture Technique
+## Aperçu du projet
+
+DermaVision est une application web médicale intelligente permettant l'analyse de lésions cutanées à partir d'images dermoscopiques.
+
+Elle combine une interface web moderne et un modèle de deep learning pour fournir un **diagnostic préliminaire (bénin ou malin)** accompagné d'un score de confiance.
+
+L'utilisateur peut :
+
+- Téléverser une image dermatologique
+- Obtenir une prédiction IA avec score de confiance
+- Consulter un rapport d'analyse détaillé
+- Gérer l'historique complet des analyses patients
+- Interagir avec un assistant IA médical conversationnel
+- Recevoir des notifications par email pour les cas à risque
+
+---
+
+## Fonctionnalités
+
+### Authentification sécurisée
+
+- Inscription et connexion des utilisateurs
+- Validation robuste du mot de passe (majuscule, chiffre, caractère spécial)
+- Gestion des sessions Flask
+- Redirection automatique vers l'inscription si le compte n'existe pas
+
+### Diagnostic assisté par IA
+
+- Modèle **VGG16** entraîné pour classifier les lésions :
+  - Lésion bénigne
+  - Lésion maligne
+- Affichage du score de confiance de la prédiction
+- Prétraitement automatique des images (redimensionnement 224×224 pixels)
+
+### Gestion des patients
+
+- Liste complète avec badges colorés (bénin / malin)
+- Modification et suppression de patients
+- Historique chronologique des analyses (timeline)
+- Envoi d'email de convocation pour les cas à risque (SMTP Gmail)
+
+### Tableau de bord
+
+- KPIs : nombre de patients, analyses effectuées, cas critiques
+- Liste des 3 patients prioritaires (score IA ≥ 50%)
+- Système de notifications en temps réel
+- Accès rapide aux principales fonctionnalités
+
+### Statistiques & Graphiques
+
+- Répartition bénin / malin (graphique Doughnut interactif — Chart.js)
+- Score de confiance moyen global
+
+### Assistant IA (DermaAssist)
+
+- Chatbot médical propulsé par l'API **Groq** (LLaMA 3.1 8B)
+- Connaissance en dermatologie et oncologie cutanée
+- Accès aux données patients pour des recommandations personnalisées
+- Widget flottant accessible depuis le tableau de bord
+
+### Paramètres & Aide
+
+- Modification du profil et du mot de passe
+- Page FAQ interactive (accordéon)
+- Support technique par email
+
+---
+
+## Pipeline IA
 
 ```
-┌─────────────────────────────────────────────────────┐
-│                   NAVIGATEUR WEB                     │
-│          (HTML / CSS / JS / Chart.js)                │
-└──────────────────────┬──────────────────────────────┘
-                       │ HTTP (GET/POST)
-                       ▼
-┌─────────────────────────────────────────────────────┐
-│               SERVEUR FLASK (app.py)                 │
-│  ┌────────────┐ ┌──────────────┐ ┌───────────────┐  │
-│  │   Routes   │ │   Sessions   │ │  Flash Msgs   │  │
-│  └────────────┘ └──────────────┘ └───────────────┘  │
-└────┬──────────────┬───────────────────┬─────────────┘
-     │              │                   │
-     ▼              ▼                   ▼
-┌──────────┐  ┌───────────┐    ┌───────────────┐
-│  MySQL   │  │  VGG16    │    │  Groq API     │
-│  (BDD)   │  │  (Model)  │    │  (Chatbot)    │
-│          │  │  .h5 file  │    │  LLaMA 3.1   │
-└──────────┘  └───────────┘    └───────────────┘
+Image dermoscopique (upload)
+        │
+        ▼
+Prétraitement : redimensionnement 224×224 px + normalisation
+        │
+        ▼
+Modèle VGG16 (pré-entraîné, fichier .h5)
+        │
+        ▼
+Prédiction : Bénin / Malin + Score de confiance (%)
+        │
+        ▼
+Sauvegarde en base de données MySQL
+        │
+        ▼
+Affichage du rapport + Notification email si Malin
 ```
 
 ---
 
-## 🛠 Technologies Utilisées
+## Technologies utilisées
 
-| Catégorie | Technologie | Version / Détail |
+| Catégorie | Technologie | Détail |
 |---|---|---|
-| **Backend** | Python + Flask | Python 3.9+, Flask 2.x |
+| **Backend** | Python + Flask | Python 3.9+, Flask 3.x |
 | **IA / Deep Learning** | TensorFlow / Keras | Modèle VGG16 pré-entraîné |
-| **Chatbot** | Groq API | Modèle LLaMA 3.1 8B Instant |
-| **Base de données** | MySQL | Via `mysql-connector-python` |
+| **Chatbot** | Groq API | LLaMA 3.1 8B Instant |
+| **Base de données** | MySQL | `mysql-connector-python` |
 | **Frontend** | HTML5 / CSS3 / JavaScript | Bootstrap 5.3, Chart.js |
 | **Icônes** | Bootstrap Icons + Font Awesome | v1.10.5 / v6.4.0 |
 | **Polices** | Google Fonts | DM Sans, Syne, Playfair Display |
-| **Email** | SMTP (Gmail) | smtplib + email.mime |
-| **Env. Variables** | python-dotenv | Fichier `.env` |
+| **Email** | SMTP Gmail | `smtplib` + `email.mime` |
+| **Variables d'env.** | python-dotenv | Fichier `.env` |
 
 ---
 
-## 📁 Structure du Projet
+## Structure du projet
 
 ```
 SKIN_CANCER_APP/
 │
-├── app.py                          # Application principale Flask (routes, logique métier)
+├── app.py                           # Application principale Flask
+├── requirements.txt                 # Dépendances Python
+├── mysql.sql                        # Script de création de la base de données
+├── .gitignore
+│
+├── docs/
+│   └── screenshots/                 # Captures d'écran de l'interface
 │
 ├── model/
-│   └── vgg16_malignant_vs_benign.h5  # Modèle VGG16 pré-entraîné (~136 Mo)
+│   └── vgg16_malignant_vs_benign.h5 # Modèle VGG16 (~136 Mo, non versionné)
 │
 ├── static/
-│   ├── style.css                   # Feuille de styles globale
-│   ├── images/                     # Images statiques (logos, illustrations)
-│   └── uploads/                    # Images de lésions uploadées par les utilisateurs
+│   ├── style.css                    # Feuille de styles globale
+│   ├── images/                      # Ressources statiques (logo)
+│   └── uploads/                     # Images uploadées par les utilisateurs
 │
-├── templates/
-│   ├── landing.html                # Page d'accueil publique
-│   ├── login.html                  # Page de connexion
-│   ├── signup.html                 # Page d'inscription
-│   ├── dashboard.html              # Tableau de bord principal
-│   ├── predict.html                # Formulaire d'analyse IA
-│   ├── result.html                 # Page de résultat d'analyse
-│   ├── patients.html               # Liste des patients (avec actions Modifier/Supprimer/Historique)
-│   ├── edit_patient.html           # Formulaire de modification d'un patient
-│   ├── patient_history.html        # Historique des analyses d'un patient (timeline)
-│   ├── stats.html                  # Page de statistiques et graphiques
-│   ├── chatbot.html                # Interface du chatbot IA
-│   ├── settings.html               # Paramètres du compte
-│   ├── help.html                   # Page d'aide / FAQ
-│   └── .env                        # Variables d'environnement (clés API, credentials)
-│
-├── PHPMailer/                      # (Module optionnel pour l'envoi d'emails)
-├── venv/                           # Environnement virtuel Python
-│
-└── README.md                       # Ce fichier
+└── templates/
+    ├── landing.html                  # Page d'accueil publique
+    ├── login.html                    # Connexion
+    ├── signup.html                   # Inscription
+    ├── dashboard.html                # Tableau de bord
+    ├── predict.html                  # Formulaire d'analyse IA
+    ├── result.html                   # Résultat du diagnostic
+    ├── patients.html                 # Liste des patients
+    ├── edit_patient.html             # Modification d'un patient
+    ├── patient_history.html          # Historique (timeline)
+    ├── stats.html                    # Statistiques & graphiques
+    ├── chatbot.html                  # Assistant IA
+    ├── settings.html                 # Paramètres du compte
+    ├── help.html                     # FAQ & aide
+    └── .env                          # Variables d'environnement (non versionné)
 ```
 
 ---
 
-##  Prérequis
+## Installation
 
-Avant de commencer, assurez-vous d'avoir installé :
-
-- **Python** 3.9 ou supérieur → [Télécharger Python](https://www.python.org/downloads/)
-- **MySQL Server** (XAMPP, WAMP ou MySQL standalone) → [Télécharger XAMPP](https://www.apachefriends.org/)
-- **pip** (gestionnaire de paquets Python, inclus avec Python)
-- **Git** (optionnel, pour cloner le dépôt)
-
----
-
-##  Installation & Configuration
-
-### Étape 1 : Cloner le projet
+### 1. Cloner le dépôt
 
 ```bash
-git clone https://github.com/votre-repo/SKIN_CANCER_APP.git
+git clone https://github.com/lobnakhalfallah1-droid/SKIN_CANCER_APP.git
 cd SKIN_CANCER_APP
 ```
 
-### Étape 2 : Créer un environnement virtuel
+### 2. Créer et activer un environnement virtuel
 
 ```bash
 python -m venv venv
 ```
 
-Activation :
-- **Windows** : `venv\Scripts\activate`
-- **Linux/Mac** : `source venv/bin/activate`
+- Windows : `venv\Scripts\activate`
+- Linux / macOS : `source venv/bin/activate`
 
-### Étape 3 : Installer les dépendances
+### 3. Installer les dépendances
 
 ```bash
-pip install flask tensorflow mysql-connector-python python-dotenv groq numpy
+pip install -r requirements.txt
 ```
 
-### Étape 3.5 : Télécharger et placer le modèle IA
+### 4. Placer le modèle IA
 
-Le modèle de prédiction (`vgg16_malignant_vs_benign.h5`) étant supérieur à 100 Mo, il est ignoré par Git.
-1. Téléchargez le fichier du modèle.
-2. Créez un dossier nommé `model` à la racine du projet (s'il n'existe pas).
-3. Placez-y le fichier pour obtenir la structure suivante : `model/vgg16_malignant_vs_benign.h5`.
+Le modèle `vgg16_malignant_vs_benign.h5` (~136 Mo) n'est pas versionné sur Git. Placez-le manuellement dans le dossier `model/` :
 
-### Étape 4 : Configurer la base de données
-
-1. Démarrez votre serveur MySQL (via XAMPP ou autre)
-2. Créez la base de données :
-
-```sql
-CREATE DATABASE skin_cancer_db;
-USE skin_cancer_db;
-
-CREATE TABLE users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(100) UNIQUE NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    first_name VARCHAR(100),
-    last_name VARCHAR(100),
-    email VARCHAR(255) UNIQUE,
-    role VARCHAR(100) DEFAULT 'Médecin',
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE patients (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    age INT,
-    email VARCHAR(255),
-    result VARCHAR(50),
-    probability FLOAT,
-    image_path TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+```
+model/
+└── vgg16_malignant_vs_benign.h5
 ```
 
-### Étape 5 : Configurer les variables d'environnement
+### 5. Configurer les variables d'environnement
 
-Éditez le fichier `templates/.env` :
+Créez le fichier `templates/.env` :
 
 ```env
 GROQ_API_KEY=votre_cle_api_groq
@@ -314,9 +224,24 @@ EMAIL_USER=votre_adresse@gmail.com
 EMAIL_PASS=votre_mot_de_passe_application
 ```
 
-> **Note :** Pour Gmail, utilisez un [mot de passe d'application](https://support.google.com/accounts/answer/185833) et non votre mot de passe principal.
+> Pour Gmail, utilisez un [mot de passe d'application](https://support.google.com/accounts/answer/185833) et non votre mot de passe principal.
 
-### Étape 6 : Lancer l'application
+---
+
+## Configuration de la base de données
+
+1. Démarrez votre serveur MySQL (XAMPP, WAMP ou MySQL standalone)
+2. Importez le fichier SQL fourni :
+
+```bash
+mysql -u root -p < mysql.sql
+```
+
+Ou exécutez manuellement le contenu de `mysql.sql` depuis phpMyAdmin.
+
+---
+
+## Lancement de l'application
 
 ```bash
 python app.py
@@ -326,106 +251,81 @@ L'application sera accessible à l'adresse : **http://127.0.0.1:5000**
 
 ---
 
-## 🗄 Base de Données
+## Utilisation
 
-### Diagramme des tables
-
-```
-┌──────────────────────┐        ┌──────────────────────┐
-│       users          │        │      patients         │
-├──────────────────────┤        ├──────────────────────┤
-│ id (PK, AUTO_INCR)   │        │ id (PK, AUTO_INCR)   │
-│ username (UNIQUE)     │        │ name                 │
-│ password              │        │ age                  │
-│ first_name            │        │ email                │
-│ last_name             │        │ result               │
-│ email (UNIQUE)        │        │ probability          │
-│ role                  │        │ image_path           │
-│ created_at            │        │ created_at           │
-└──────────────────────┘        └──────────────────────┘
-```
+1. Accédez à la page d'accueil → `http://127.0.0.1:5000`
+2. Créez un compte ou connectez-vous
+3. Depuis le tableau de bord, lancez une **Nouvelle Analyse**
+4. Téléversez une image dermoscopique et renseignez les infos du patient
+5. Consultez le résultat IA (bénin / malin + score de confiance)
+6. Gérez les patients depuis la liste : modifier, supprimer, voir l'historique
+7. Envoyez un email de convocation pour les patients à risque
+8. Interrogez l'assistant **DermaAssist** pour des recommandations médicales
+9. Consultez les statistiques globales
 
 ---
 
-##  Utilisation
+## Captures d'écran
 
-### Workflow Principal
+| Page d'accueil | Inscription | Tableau de bord |
+|:---:|:---:|:---:|
+| ![Accueil](docs/screenshots/screenshot_landing.png) | ![Inscription](docs/screenshots/screenshot_signup.png) | ![Dashboard](docs/screenshots/screenshot_dashboard.png) |
 
-1. **Accéder** à la page d'accueil → `http://127.0.0.1:5000`
-2. **Créer un compte** ou se **connecter**
-3. **Accéder au dashboard** pour voir les KPIs et les patients prioritaires
-4. **Nouvelle Analyse** : uploader une image dermoscopique → obtenir la prédiction IA
-5. **Consulter la liste des patients** avec leurs résultats
-6. **Modifier / Supprimer** un patient depuis les boutons d'action du tableau
-7. **Consulter l'historique** d'un patient pour voir l'évolution de ses analyses dans le temps
-8. **Envoyer un email** de convocation pour les patients à risque
-9. **Utiliser le chatbot** pour obtenir des recommandations médicales
-10. **Consulter les statistiques** pour une vue globale des diagnostics
+| Analyse IA | Résultat | Liste des patients |
+|:---:|:---:|:---:|
+| ![Analyse](docs/screenshots/screenshot_prediction.png) | ![Résultat](docs/screenshots/screenshot_result.png) | ![Patients](docs/screenshots/screenshot_patients.png) |
 
----
+| Historique | Statistiques | Assistant IA |
+|:---:|:---:|:---:|
+| ![Historique](docs/screenshots/screenshot_history.png) | ![Stats](docs/screenshots/screenshot_stats.png) | ![Chatbot](docs/screenshots/screenshot_chatbot.png) |
 
-## 📸 Captures d'Écran (Démonstration)
-
-### 🏠 Page d'Accueil (Landing Page)
-![Page d'Accueil](docs/screenshots/screenshot_landing.png)
-
-### 🔐 Connexion (Login)
-![Page de Connexion](docs/screenshots/screenshot_login.png)
-
-### 📝 Inscription (Sign Up)
-![Page d'Inscription](docs/screenshots/screenshot_signup.png)
-
-### 📊 Tableau de Bord (Dashboard)
-![Tableau de Bord](docs/screenshots/screenshot_dashboard.png)
-
-### 🔬 Formulaire d'Analyse (Prediction)
-![Formulaire d'Analyse](docs/screenshots/screenshot_prediction.png)
-
-### 🩺 Rapport & Résultat IA (Diagnostic)
-![Rapport de Diagnostic](docs/screenshots/screenshot_result.png)
-
-### 👥 Liste des Patients (Gestion & Actions)
-![Liste des Patients](docs/screenshots/screenshot_patients.png)
-
-### 📜 Historique des Analyses d'un Patient (Timeline)
-![Historique des Analyses](docs/screenshots/screenshot_history.png)
-
-### 📈 Statistiques & Graphiques
-![Page de Statistiques](docs/screenshots/screenshot_stats.png)
-
-### 🤖 Assistant IA (Chatbot - DermaAssist)
-![Assistant IA](docs/screenshots/screenshot_chatbot.png)
-
-### ⚙️ Paramètres du Compte
-![Paramètres du Compte](docs/screenshots/screenshot_settings.png)
-
-### ❓ Centre d'Aide & FAQ
-![Centre d'Aide](docs/screenshots/screenshot_faq.png)
+| Paramètres | FAQ & Aide |
+|:---:|:---:|
+| ![Paramètres](docs/screenshots/screenshot_settings.png) | ![FAQ](docs/screenshots/screenshot_faq.png) |
 
 ---
 
-##  Auteurs
+## Points forts
+
+- Interface web moderne avec glassmorphisme, gradients et micro-animations
+- Modèle VGG16 hautement performant pour la classification dermoscopique
+- Assistant médical IA conversationnel avec accès aux données patients
+- Notifications email automatiques pour les cas à risque
+- Gestion complète du cycle de vie du patient (CRUD + historique)
+- Architecture Flask légère et déployable facilement
+
+---
+
+## Améliorations futures
+
+- [ ] Intégration d'un système d'authentification avec hachage des mots de passe (Werkzeug)
+- [ ] Export PDF des rapports d'analyse
+- [ ] Support multi-langues (arabe, anglais)
+- [ ] Déploiement sur un serveur cloud (Heroku, Railway, etc.)
+- [ ] Application mobile (React Native ou Flutter)
+- [ ] Intégration de davantage de classes de lésions cutanées
+
+---
+
+## Avertissement médical
+
+> **DermaVision est un outil d'aide au diagnostic et ne remplace en aucun cas l'avis d'un dermatologue qualifié.**
+> Les résultats fournis par l'IA doivent toujours être confirmés par un examen clinique professionnel.
+
+---
+
+## Auteurs
 
 | Rôle | Nom |
 |---|---|
-| **Développeur** | LOBNA khalfallah|
-| **professeure** | [Amira Chtioui ] |
+| **Développeur** | LOBNA Khalfallah |
+| **Encadrante** | Amira Chtioui |
 
 ---
 
-##  Licence
+## Licence
 
-Ce projet est réalisé dans le cadre académique . Toute reproduction ou utilisation commerciale est soumise à autorisation.
+Ce projet est réalisé dans le cadre d'un Projet de Fin d'Année (PFA) à titre académique.
+Toute reproduction ou utilisation commerciale est soumise à autorisation préalable.
 
----
-
-<div align="center">
-
-** Avertissement Médical**
-
-*DermaVision est un outil d'aide au diagnostic et ne remplace en aucun cas l'avis d'un dermatologue qualifié. Les résultats fournis par l'IA doivent toujours être confirmés par un examen clinique professionnel.*
-
-</div>
-#   S K I N _ C A N C E R _ A P P 
- 
- 
+Voir le fichier [LICENSE](LICENSE) pour plus de détails.
