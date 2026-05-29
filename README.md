@@ -93,7 +93,7 @@ Le modèle IA analyse les images dermoscopiques et fournit une probabilité de m
 | **Aperçu d'image** | Miniature de la lésion analysée dans le tableau |
 | **Tri chronologique** | Patients triés par date d'ajout (les plus récents en premier) |
 | **Informations de contact** | Affichage de l'email pour le suivi des patients |
-| **✏️ Modifier un patient** | Formulaire d'édition pré-rempli pour modifier le nom, l'âge et l'email d'un patient |
+| ** Modifier un patient** | Formulaire d'édition pré-rempli pour modifier le nom, l'âge et l'email d'un patient |
 | **🗑️ Supprimer un patient** | Suppression d'un patient avec confirmation JavaScript et nettoyage de l'image uploadée |
 | **Boutons d'actions** | Chaque ligne du tableau contient des boutons Modifier, Historique et Supprimer |
 
@@ -132,7 +132,7 @@ Le modèle IA analyse les images dermoscopiques et fournit une probabilité de m
 | **Configuration sécurisée** | Identifiants email stockés dans un fichier `.env` |
 | **Vérification** | Contrôle de l'existence de l'email du patient avant envoi |
 
-### ⚙️ 10. Paramètres du Compte
+###  10. Paramètres du Compte
 | Fonctionnalité | Description |
 |---|---|
 | **Modification du profil** | Mise à jour de l'identifiant et du rôle |
@@ -229,7 +229,7 @@ SKIN_CANCER_APP/
 
 ---
 
-## 📦 Prérequis
+##  Prérequis
 
 Avant de commencer, assurez-vous d'avoir installé :
 
@@ -240,7 +240,7 @@ Avant de commencer, assurez-vous d'avoir installé :
 
 ---
 
-## 🚀 Installation & Configuration
+##  Installation & Configuration
 
 ### Étape 1 : Cloner le projet
 
@@ -347,7 +347,7 @@ L'application sera accessible à l'adresse : **http://127.0.0.1:5000**
 
 ---
 
-## 📖 Utilisation
+##  Utilisation
 
 ### Workflow Principal
 
@@ -369,8 +369,20 @@ L'application sera accessible à l'adresse : **http://127.0.0.1:5000**
 ### 🏠 Page d'Accueil (Landing Page)
 ![Page d'Accueil](static/images/screenshot_landing.png)
 
+### 🔐 Connexion (Login)
+![Page de Connexion](static/images/screenshot_login.png)
+
+### 📝 Inscription (Sign Up)
+![Page d'Inscription](static/images/screenshot_signup.png)
+
 ### 📊 Tableau de Bord (Dashboard)
 ![Tableau de Bord](static/images/screenshot_dashboard.png)
+
+### 🔬 Formulaire d'Analyse (Prediction)
+![Formulaire d'Analyse](static/images/screenshot_prediction.png)
+
+### 🩺 Rapport & Résultat IA (Diagnostic)
+![Rapport de Diagnostic](static/images/screenshot_result.png)
 
 ### 👥 Liste des Patients (Gestion & Actions)
 ![Liste des Patients](static/images/screenshot_patients.png)
@@ -381,9 +393,18 @@ L'application sera accessible à l'adresse : **http://127.0.0.1:5000**
 ### 📈 Statistiques & Graphiques
 ![Page de Statistiques](static/images/screenshot_stats.png)
 
+### 🤖 Assistant IA (Chatbot - DermaAssist)
+![Assistant IA](static/images/screenshot_chatbot.png)
+
+### ⚙️ Paramètres du Compte
+![Paramètres du Compte](static/images/screenshot_settings.png)
+
+### ❓ Centre d'Aide & FAQ
+![Centre d'Aide](static/images/screenshot_faq.png)
+
 ---
 
-## 👨‍💻 Auteurs
+##  Auteurs
 
 | Rôle | Nom |
 |---|---|
@@ -392,15 +413,15 @@ L'application sera accessible à l'adresse : **http://127.0.0.1:5000**
 
 ---
 
-## 📄 Licence
+##  Licence
 
-Ce projet est réalisé dans le cadre académique (Projet de Fin d'Année). Toute reproduction ou utilisation commerciale est soumise à autorisation.
+Ce projet est réalisé dans le cadre académique . Toute reproduction ou utilisation commerciale est soumise à autorisation.
 
 ---
 
 <div align="center">
 
-**⚠️ Avertissement Médical**
+** Avertissement Médical**
 
 *DermaVision est un outil d'aide au diagnostic et ne remplace en aucun cas l'avis d'un dermatologue qualifié. Les résultats fournis par l'IA doivent toujours être confirmés par un examen clinique professionnel.*
 
