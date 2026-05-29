@@ -325,7 +325,7 @@ L'application sera accessible à l'adresse : **http://127.0.0.1:5000**
 
 ## Licence
 
-Ce projet est réalisé dans le cadre d'un Projet de Fin d'Année (PFA) à titre académique.
+Ce projet est réalisé dans le cadre d'un Projet a titre académique.
 Toute reproduction ou utilisation commerciale est soumise à autorisation préalable.
 
 Voir le fichier [LICENSE](LICENSE) pour plus de détails.
