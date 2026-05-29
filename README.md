@@ -367,40 +367,40 @@ L'application sera accessible à l'adresse : **http://127.0.0.1:5000**
 ## 📸 Captures d'Écran (Démonstration)
 
 ### 🏠 Page d'Accueil (Landing Page)
-![Page d'Accueil](static/images/screenshot_landing.png)
+![Page d'Accueil](docs/screenshots/screenshot_landing.png)
 
 ### 🔐 Connexion (Login)
-![Page de Connexion](static/images/screenshot_login.png)
+![Page de Connexion](docs/screenshots/screenshot_login.png)
 
 ### 📝 Inscription (Sign Up)
-![Page d'Inscription](static/images/screenshot_signup.png)
+![Page d'Inscription](docs/screenshots/screenshot_signup.png)
 
 ### 📊 Tableau de Bord (Dashboard)
-![Tableau de Bord](static/images/screenshot_dashboard.png)
+![Tableau de Bord](docs/screenshots/screenshot_dashboard.png)
 
 ### 🔬 Formulaire d'Analyse (Prediction)
-![Formulaire d'Analyse](static/images/screenshot_prediction.png)
+![Formulaire d'Analyse](docs/screenshots/screenshot_prediction.png)
 
 ### 🩺 Rapport & Résultat IA (Diagnostic)
-![Rapport de Diagnostic](static/images/screenshot_result.png)
+![Rapport de Diagnostic](docs/screenshots/screenshot_result.png)
 
 ### 👥 Liste des Patients (Gestion & Actions)
-![Liste des Patients](static/images/screenshot_patients.png)
+![Liste des Patients](docs/screenshots/screenshot_patients.png)
 
 ### 📜 Historique des Analyses d'un Patient (Timeline)
-![Historique des Analyses](static/images/screenshot_history.png)
+![Historique des Analyses](docs/screenshots/screenshot_history.png)
 
 ### 📈 Statistiques & Graphiques
-![Page de Statistiques](static/images/screenshot_stats.png)
+![Page de Statistiques](docs/screenshots/screenshot_stats.png)
 
 ### 🤖 Assistant IA (Chatbot - DermaAssist)
-![Assistant IA](static/images/screenshot_chatbot.png)
+![Assistant IA](docs/screenshots/screenshot_chatbot.png)
 
 ### ⚙️ Paramètres du Compte
-![Paramètres du Compte](static/images/screenshot_settings.png)
+![Paramètres du Compte](docs/screenshots/screenshot_settings.png)
 
 ### ❓ Centre d'Aide & FAQ
-![Centre d'Aide](static/images/screenshot_faq.png)
+![Centre d'Aide](docs/screenshots/screenshot_faq.png)
 
 ---
 
